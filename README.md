@@ -5,9 +5,9 @@
 
 
 ## Authors
-* [Nikunj Goenka](Nikunj.Goenka@dal.ca)
-* [Rashmi Chandy](rs682521@dal.ca)
-* [Kethan Kumar Nasapu](kethan@dal.ca)
+* [Nikunj Goenka](https://git.cs.dal.ca/goenka)
+* [Rashmi Chandy](https://git.cs.dal.ca/chandy)
+* [Kethan Kumar Nasapu](https://git.cs.dal.ca/nasapu)
 
 ## Installation
 
