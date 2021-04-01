@@ -29,4 +29,4 @@ def success(name):
    return render_template('welcome.html', name1 = name)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
