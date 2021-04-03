@@ -35,22 +35,67 @@
             </div>
             <div class="col-md-5  card">
                 <div class="card-body">
-                <h5 class="card-title">LOGIN</h5>
-                <p class="text-danger" > {{ message }}</p>
-                <form action="/login" method="post" >
-                    <div class="form-floating">
-                        <input type="text" placeholder="Username" class="form-control" id="exampleUserName" name="userName" required>
-                        <label for="exampleUserName">Username</label>
-                        <small class="form-text text-muted">Username is unique for everyone </small>
-                    </div>
+                    <!--TABS FOR REGISTRATION AND LOGGING-->
+                 <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="home" aria-selected="true">Login</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="profile" aria-selected="false">Register</button>
+                  </li>
 
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
-                        <label class="text-muted" for="exampleInputPassword1">Password</label>
-                        <small id="passwordHelp" class="form-text text-muted">Your password is saved in encrypted form</small>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <form action="/login" method="post" >
+                            <div class="form-group">
+                                <label for="exampleUserName">Username</label>
+                                <input type="text" placeholder="Username" class="form-control" id="exampleUserName" name="userName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+                            </div>
+                            
+                            <button style="margin-top:10px;" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+
+                  </div>
+                  <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                      <form>
+
+                            <div class="form-group">
+                              <label for="inputEmail4">Account number</label>
+                              <input type="email" class="form-control" id="inputEmail4" placeholder="Please enter 10 digit account number">
+                            </div>
+
+                          <div class="form-group">
+                            <label for="inputAddress">Username</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="Username">
+                          </div>
+
+                           <div class="form-group ">
+                              <label for="inputPassword4">Password</label>
+                              <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            </div>
+
+                          <div class="form-group">
+                            <label for="inputAddress">E-mail ID</label>
+                            <input type="text" class="form-control" id="emailAddress" placeholder="Email address">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputAddress2">Mobile Number</label>
+                            <input type="text" class="form-control" id="inputAddress2" placeholder="Please enter 10 digit mobile number">
+                          </div>
+
+
+                          <button style="margin-top:10px;" type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                  </div>
+                </div>
+
                 </div>
             </div>
             <div class="col-sm"></div>
