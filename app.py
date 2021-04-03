@@ -29,7 +29,7 @@ def login():
 @app.route('/success/<name>')
 def success(name):
    if "username" in session:
-      return render_template('welcome.html', name1 = name)
+      return render_template('single.html', name1 = name)
    else:
       render_template("index.html", message = "user is not set")
 
