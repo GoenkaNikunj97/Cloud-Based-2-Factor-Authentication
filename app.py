@@ -1,9 +1,9 @@
 from flask import *
 
-SAVED_USERNAME = "admin"
-SAVED_PASSWORD = "admin"
+import loginLogic
+
 app = Flask(__name__)
-app.secret_key = "SecretKey"
+app.config.from_object('config.DevelopmentConfig')
 
 @app.route('/')
 def showLoginPage():
@@ -15,25 +15,37 @@ def showLoginPage():
 @app.route('/login',methods = ['POST'])
 def login():
    if request.method == 'POST':
-      print(request.form['userName'])
-      user = request.form['userName']
+      userId = request.form['userName']
       password = request.form['password']
-      if (user == SAVED_USERNAME and password == SAVED_PASSWORD):
-         session['username'] = request.form["userName"]
-         return redirect(url_for('success',name = user))
+
+      if(loginLogic.isUserValid(userId, password)):
+          session['username'] = request.form["userName"]
+          return redirect(url_for('success', name=userId))
       else:
          return render_template("index.html", message = "INVALID USERNAME OR PASSWORD")
    else:
       print("not POST METHOD")
+
 
 @app.route('/success/<name>')
 def success(name):
    if "username" in session:
       return render_template('single.html', name1 = name)
    else:
-      render_template("index.html", message = "user is not set")
+      return redirect(url_for('showLoginPage'))
 
 
+@app.route("/logout", methods=["GET"])
+def logout():
+  session.clear()
+  return redirect(url_for('showLoginPage'))
+
+@app.route("/submitLoanApplication",methods=["POST"])
+def submitLoanApplication():
+    print("-----------------------")
+    print(request.form['phoneNumber'])
+    print(request.files['loanFile'])
+    return redirect(url_for('success', name="Nikunj"))
 
 if __name__ == '__main__':
     app.run(debug=True)
