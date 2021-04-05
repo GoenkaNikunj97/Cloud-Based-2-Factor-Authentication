@@ -2,17 +2,16 @@
 import os
 from os import path
 import requests
-
+import json
 import cryptoLogic
 
 BASE_URL = "https://7mqeagvdnf.execute-api.us-east-1.amazonaws.com/"
-success = "Success"
-SAVED_USERNAME = "admin"
-SAVED_PASSWORD = "admin"
+HOME_PATH = os.path.expanduser('~')
+SEED_LOCATION = os.path.join(HOME_PATH , "seed.enc")
 
 def getSeedData():
-    if(path.exists("C:\\loanApplication\\seed.txt")):
-        temp = open("C:\\loanApplication\\seed.txt", "r")
+    if(path.exists(SEED_LOCATION)):
+        temp = open(SEED_LOCATION, "r")
         data = temp.read()
         temp.close()
         return data
@@ -44,17 +43,18 @@ def isUserValid(userId, password):
         if(output == 200):
             print("UserID found Getting Seed")
 
-            queryUrl = "https://g52kmvfp98.execute-api.us-east-1.amazonaws.com/download_seed?emailId"+userId
+            queryUrl = "https://g52kmvfp98.execute-api.us-east-1.amazonaws.com/download_seed"
             res = requests.get(queryUrl)
-            seed = res.text
+            responseData = json.loads(res.text)['message']
 
-            is_accessible = os.access("C:\\loanApplication", os.F_OK)  # Check if you have access, this should be a path
+            is_accessible = os.access(HOME_PATH, os.F_OK)  # Check if you have access, this should be a path
             if is_accessible == False:  # If you don't, create the path
-                os.makedirs("C:\\loanApplication")
-            os.chdir("C:\\loanApplication")  # Check now if the path exist
+                os.makedirs(HOME_PATH)
+            os.chdir(HOME_PATH)  # Check now if the path exist
 
-            f = open("C:\\loanApplication\\seed.txt", "w")
-            encrptedSeed = cryptoLogic.encrypt(seed , password)
+            f = open(SEED_LOCATION, "w")
+            encrptedSeed = cryptoLogic.encrypt(responseData , password)
             f.write(encrptedSeed.decode())
             f.close()
+
             return True
