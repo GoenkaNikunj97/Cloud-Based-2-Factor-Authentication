@@ -2,6 +2,7 @@ from flask import *
 import os
 import requests
 import configparser
+import json
 
 import loginLogic
 
@@ -36,9 +37,12 @@ def login():
 @app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
-
+        requestBody = {"account_number":int(request.form['account_number']),"emailid":request.form['emailid'],
+                       "mobile":int(request.form['mobile']),"password":request.form['password'],"username":request.form['username']}
         registrationUrl = readConfig('AwsServiceUrl', 'aws.registration')
-        response = requests.post(registrationUrl,request.form.to_dict())
+        print(request.form.to_dict())
+        print(requestBody)
+        response = requests.post(registrationUrl,requestBody)
         print(response.content)
         if response.content:
             flash("Successfully registered!", "success")
