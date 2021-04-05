@@ -1,4 +1,4 @@
-import wget
+
 import os
 from os import path
 import requests

@@ -18,3 +18,6 @@ To install your application on your computer follow these steps:
 3. Run `$ pip install -r requirements.txt` to import all the dependencies.
 4. Run the application with `$ python app.py`.
 5. Go to `http://localhost:5000` in your browser to connect to the application.
+## Citation
+Flashing message on screen 
+https://pythonise.com/series/learning-flask/flask-message-flashing
