@@ -3,31 +3,34 @@ import os
 import requests
 import configparser
 
-SAVED_USERNAME = "admin"
-SAVED_PASSWORD = "admin"
+import loginLogic
+
 app = Flask(__name__)
+app.config.from_object('config.DevelopmentConfig')
 app.secret_key = os.urandom(16)
 
 
 @app.route('/')
 def showLoginPage():
-    return render_template("index.html")
+   if "username" in session:
+      username = session['username']
+      return redirect(url_for('success',name = username))
+   return render_template("index.html")
 
-
-@app.route('/login', methods=['POST'])
+@app.route('/login',methods = ['POST'])
 def login():
-    if request.method == 'POST':
+   if request.method == 'POST':
+      userId = request.form['userName']
+      password = request.form['password']
 
-        print(request.form['email'])
-        user = request.form['email']
-        password = request.form['password']
-        # print(user + "  -->  "+ password)
-        if (user == SAVED_USERNAME and password == SAVED_PASSWORD):
-            return redirect(url_for('success', name=user))
-        else:
-            return render_template("index.html", message="INVALID USERNAME OR PASSWORD")
-    else:
-        print("not POST METHOD")
+      if(loginLogic.isUserValid(userId, password)):
+          session['username'] = request.form["userName"]
+          return redirect(url_for('success', name=userId))
+      else:
+         return render_template("index.html", message = "INVALID USERNAME OR PASSWORD")
+   else:
+      print("not POST METHOD")
+
 
 
 @app.route('/register', methods=['POST'])
@@ -49,7 +52,27 @@ def register():
 
 @app.route('/success/<name>')
 def success(name):
-    return render_template('welcome.html', name1=name)
+   if "username" in session:
+      return render_template('single.html', name1 = name)
+   else:
+      return redirect(url_for('showLoginPage'))
+
+
+@app.route("/logout", methods=["GET"])
+def logout():
+  session.clear()
+  return redirect(url_for('showLoginPage'))
+
+@app.route("/submitLoanApplication",methods=["POST"])
+def submitLoanApplication():
+    print("-----------------------")
+    print(request.form['phoneNumber'])
+    print(request.files['loanFile'])
+    return redirect(url_for('success', name="Nikunj"))
+
+@app.route("/register", methods=["POST"] )
+def registerUser():
+    pass
 
 
 def readConfig(section,key):

@@ -1,0 +1,58 @@
+<section class="site-section bg-light" data-aos="fade" id="applyLoan-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="section-title mb-3">Apply For Loan</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-5">
+                <form action="/submitLoanApplication" method="post" class="p-5 bg-white">
+                    <h2 class="h4 text-black mb-5">How much do you need</h2>
+                    <div class="row form-group">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label class="text-black" for="amount">Amount of money ($):</label>
+                            <input type="text" id="amount" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-black" for="time">How long for (day):</label>
+                            <input type="text" id="time" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="text-black" for="repayment">Repayment:</label>
+                            <select id="repayment" class="form-control">
+                                <option value="Choose Payment Option">Choose Payment Option</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quaterly">Quaterly</option>
+                                <option value="Semi-Annual">Semi-Annual</option>
+                                <option value="Annually">Annually</option>
+                                <option value="One-Time">One-Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="text-black" for="loanFile">Upload Loan Document</label>
+                        <input type="File" id="loanFile" name="loanFile" class="form-control">
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label class="text-black" for="name">Name:</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-black" for="phone">Phone:</label>
+                            <input type="text" id="phone" name="phoneNumber" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Send Application" class="btn btn-primary btn-md text-white">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
