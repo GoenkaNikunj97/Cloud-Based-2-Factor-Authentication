@@ -41,8 +41,8 @@ def register():
                        "mobile":int(request.form['mobile']),"password":request.form['password'],"username":request.form['username']}
         registrationUrl = readConfig('AwsServiceUrl', 'aws.registration')
         print(request.form.to_dict())
-        print(requestBody)
-        response = requests.post(registrationUrl,requestBody)
+        print(json.dumps(requestBody))
+        response = requests.post(registrationUrl,json.dumps(requestBody))
         print(response.content)
         if response.content:
             flash("Successfully registered!", "success")
