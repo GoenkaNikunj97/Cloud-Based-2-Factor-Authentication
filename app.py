@@ -47,5 +47,9 @@ def submitLoanApplication():
     print(request.files['loanFile'])
     return redirect(url_for('success', name="Nikunj"))
 
+@app.route("/register", methods=["POST"] )
+def registerUser():
+    pass
+
 if __name__ == '__main__':
     app.run(debug=True)
