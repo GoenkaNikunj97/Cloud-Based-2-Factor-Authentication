@@ -24,7 +24,6 @@ def isUserValid(userId, password):
         print("Local Seed Found");
 
         decryptedSeed = cryptoLogic.decrypt(seed , password)
-
         decryptedSeed = hash(decryptedSeed)
 
         queryUrl = BASE_URL + "validate_hash?hash=" + str(decryptedSeed)
@@ -44,7 +43,18 @@ def isUserValid(userId, password):
             print("UserID found Getting Seed")
 
             queryUrl = "https://g52kmvfp98.execute-api.us-east-1.amazonaws.com/download_seed"
+
+            userData={
+                'emailid':userId,
+                'password':password
+            }
+
+            userData = json.dumps(userData)
+            print(userData)
+            requests.post(queryUrl, json=userData)
             res = requests.get(queryUrl)
+            print(res.text);
+
             responseData = json.loads(res.text)['message']
 
             is_accessible = os.access(HOME_PATH, os.F_OK)  # Check if you have access, this should be a path
@@ -52,9 +62,9 @@ def isUserValid(userId, password):
                 os.makedirs(HOME_PATH)
             os.chdir(HOME_PATH)  # Check now if the path exist
 
-            f = open(SEED_LOCATION, "w")
-            encrptedSeed = cryptoLogic.encrypt(responseData , password)
-            f.write(encrptedSeed.decode())
-            f.close()
+            #f = open(SEED_LOCATION, "w")
+            #encrptedSeed = cryptoLogic.encrypt(responseData , password)
+            #f.write(encrptedSeed.decode())
+            #f.close()
 
             return True

@@ -1,7 +1,7 @@
 from flask import *
 
 import loginLogic
-#import registrationLogic
+import registrationLogic
 
 app = Flask(__name__)
 app.config.from_object('config.DevelopmentConfig')
@@ -23,10 +23,24 @@ def login():
           session['username'] = request.form["userName"]
           return redirect(url_for('success', name=userId))
       else:
-         return render_template("index.html", message = "INVALID USERNAME OR PASSWORD")
+         return render_template("index.html", error = "INVALID USERNAME OR PASSWORD")
    else:
       print("not POST METHOD")
 
+@app.route("/register", methods=["POST"] )
+def registerUser():
+    if request.method == 'POST':
+        data = dict()
+        data['accountNumber'] = request.form['accountNumber']
+        data['userName'] = request.form['userName']
+        data['password']= request.form['password']
+        data['email'] = request.form['email']
+        data['phNumber'] = request.form['phNumber']
+
+        if (registrationLogic.registerUser(data)):
+            return render_template("index.html", message = "User Created")
+        else:
+            return render_template("index.html", error="USER NOT CREATED")
 
 @app.route('/success/<name>')
 def success(name):
@@ -43,14 +57,7 @@ def logout():
 
 @app.route("/submitLoanApplication",methods=["POST"])
 def submitLoanApplication():
-    print("-----------------------")
-    print(request.form['phoneNumber'])
-    print(request.files['loanFile'])
     return redirect(url_for('success', name="Nikunj"))
-
-@app.route("/register", methods=["POST"] )
-def registerUser():
-    pass
 
 if __name__ == '__main__':
     app.run(debug=True)
