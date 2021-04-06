@@ -1,7 +1,6 @@
 from flask import *
 import os
 import requests
-import configparser
 import json
 
 import loginLogic
@@ -11,41 +10,51 @@ app = Flask(__name__)
 app.config.from_object('config.DevelopmentConfig')
 app.secret_key = os.urandom(16)
 
-
 @app.route('/')
 def showLoginPage():
    if "username" in session:
       username = session['username']
       return redirect(url_for('success',name = username))
-   return render_template("index.html")
+   return render_template("index.html", otp = "False")
 
 @app.route('/login',methods = ['POST'])
 def login():
    if request.method == 'POST':
       userId = request.form['userName']
       password = request.form['password']
-
-      if(loginLogic.isUserValid(userId, password)):
+      otp = None
+      try:
+        otp = request.form['OTP']
+      except:
+          pass
+      validationResponse = loginLogic.isUserValid(userId, password,otp)
+      print(validationResponse)
+      if( validationResponse['isCorrect']):
           session['username'] = request.form["userName"]
           return redirect(url_for('success', name=userId))
+      elif(validationResponse['message'] == "OTP"):
+          flash("OTP Sent to Email", "error")
+          return render_template("index.html", OTP="True", userId=userId, password=password)
       else:
-         return render_template("index.html", error = "INVALID USERNAME OR PASSWORD")
+          flash(validationResponse['message'], "error")
+          return render_template("index.html", userId=userId, password=password)
    else:
-      print("not POST METHOD")
-
-
+      print("NOT POST METHOD")
 
 @app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
-        requestBody = {"account_number":int(request.form['account_number']),"emailid":request.form['emailid'],
-                       "mobile":int(request.form['mobile']),"password":request.form['password'],"username":request.form['username']}
-        registrationUrl = readConfig('AwsServiceUrl', 'aws.registration')
-        print(request.form.to_dict())
-        print(json.dumps(requestBody))
-        response = requests.post(registrationUrl,json.dumps(requestBody))
-        print(response.content)
-        if response.content:
+
+        requestBody = {
+            "account_number":int(request.form['account_number']),
+            "emailid":request.form['emailid'],
+            "mobile":int(request.form['mobile']),
+            "password":request.form['password'],
+            "username":request.form['username']
+        }
+        isUserRegistered = registrationLogic.registerUser(requestBody)
+
+        if isUserRegistered:
             flash("Successfully registered!", "success")
             return render_template("index.html")
         else:
@@ -71,13 +80,6 @@ def logout():
 @app.route("/submitLoanApplication",methods=["POST"])
 def submitLoanApplication():
     return redirect(url_for('success', name="Nikunj"))
-
-def readConfig(section,key):
-
-    configParser = configparser.RawConfigParser()
-    configParser.read('configFile.properties')
-
-    return configParser.get(section, key);
 
 
 if __name__ == '__main__':

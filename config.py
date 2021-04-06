@@ -1,4 +1,6 @@
 import os
+import configparser
+
 
 class Config(object):
     DEBUG = False
@@ -15,5 +17,11 @@ class DevelopmentConfig(Config):
     DEVELOPMENT=True
     DEBUG=True
 
+def readConfig(section,key):
+
+    configParser = configparser.RawConfigParser()
+    configParser.read('configFile.properties')
+
+    return configParser.get(section, key)
 
 SQLALCHEMY_DATABASE_URI="DB_URL"
