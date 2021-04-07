@@ -20,6 +20,7 @@ def showLoginPage():
 @app.route('/login',methods = ['POST'])
 def login():
    if request.method == 'POST':
+      #  userName is the name of the form field "Email Address"
       userId = request.form['userName']
       password = request.form['password']
       otp = None
