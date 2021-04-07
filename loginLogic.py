@@ -15,7 +15,7 @@ SEND_OTP_URL = config.readConfig('AwsServiceUrl', 'sendOtp')
 HOME_PATH = os.path.expanduser('~')
 
 def getLocalSeed(userId):
-    seedName = userId + "_seed.txt"
+    seedName = userId + "_seed.enc"
     SEED_LOCATION = os.path.join(HOME_PATH, seedName)
     print(SEED_LOCATION)
     if(path.exists(SEED_LOCATION)):
@@ -35,6 +35,7 @@ def isUserValid(userId, password, otp=""):
 
     resData = json.loads(res.text)["response"]
     print(resData)
+    print(res)
     if (res.status_code == 200):
         isSeedPresent = getLocalSeed(userId)
         if(isSeedPresent):
@@ -70,7 +71,7 @@ def isUserValid(userId, password, otp=""):
                         os.makedirs(HOME_PATH)
                     os.chdir(HOME_PATH)  # Check now if the path exist
 
-                    seedName = userId + "_seed.txt"
+                    seedName = userId + "_seed.enc"
                     SEED_LOCATION = os.path.join(HOME_PATH, seedName)
 
                     f = open(SEED_LOCATION, "w")

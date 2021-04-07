@@ -28,7 +28,7 @@ def store_seed(userData,response):
         os.makedirs(HOME_PATH)
     os.chdir(HOME_PATH)  # Check now if the path exist
 
-    seedName = userData["emailid"] + "_seed.txt"
+    seedName = userData["emailid"] + "_seed.enc"
     SEED_LOCATION = os.path.join(HOME_PATH, seedName)
 
     f = open(SEED_LOCATION, "w")
