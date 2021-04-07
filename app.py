@@ -64,14 +64,12 @@ def register():
     else:
         print("Method signature error")
 
-
 @app.route('/success/<name>')
 def success(name):
    if "username" in session:
       return render_template('single.html', name1 = name)
    else:
       return redirect(url_for('showLoginPage'))
-
 
 @app.route("/logout", methods=["GET"])
 def logout():
@@ -81,7 +79,6 @@ def logout():
 @app.route("/submitLoanApplication",methods=["POST"])
 def submitLoanApplication():
     return redirect(url_for('success', name="Nikunj"))
-
 
 if __name__ == '__main__':
     app.run(debug=True)
