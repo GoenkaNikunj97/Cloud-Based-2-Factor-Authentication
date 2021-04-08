@@ -14,6 +14,6 @@ class DevelopmentConfig(Config):
 
 def readConfig(section,key):
 
-    return c.get(key)
+    return c.get(section, key)
 
 SQLALCHEMY_DATABASE_URI="DB_URL"
