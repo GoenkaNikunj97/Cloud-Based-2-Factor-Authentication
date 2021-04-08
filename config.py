@@ -1,5 +1,4 @@
 import os
-import configparser
 import configProperties as c
 
 class Config(object):
