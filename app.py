@@ -36,7 +36,7 @@ def login():
           session['username'] = request.form["userName"]
           return redirect(url_for('success', name=userId))
       elif(validationResponse['message'] == "OTP"):
-          flash("OTP for 2 factor authentication has been sent to Email", "error")
+          flash("Login from new device needs second factor authentication. OTP has been sent to your email!", "error")
           return render_template("index.html", OTP="True", userId=userId, password=password)
       else:
           flash(validationResponse['message'], "error")

@@ -553,15 +553,14 @@ body:after {
     .sticky-wrapper.is-sticky .site-navbar .site-menu-toggle {
       color: #000; }
     .sticky-wrapper.is-sticky .site-navbar .site-logo a {
-      color: #44A08D;
-      background :#44A08D;}
+      color: #44A08D}
     .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a {
       color: #000 !important; }
       .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover, .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active {
         color: #44A08D !important; }
 /* Blocks */
 .site-blocks-cover {
-  background-image: url("/static/images/img_3.jpg");
+  background-image: url("/static/images/img_1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
@@ -575,7 +574,8 @@ body:after {
       bottom: 0;
       right: 0;
       top: 0;
-      background: rgba(184, 178, 166, 0.7); }
+      background: rgba(184, 178, 166, 0.3);
+    }
   .site-blocks-cover .player {
     position: absolute;
     bottom: -250px;
@@ -589,7 +589,7 @@ body:after {
   .site-blocks-cover h1 {
     font-size: 4rem;
     font-weight: 400;
-    color: #fff;
+    color: #FFFFFF;
     font-weight: 900; }
     @media (max-width: 991.98px) {
       .site-blocks-cover h1 {
