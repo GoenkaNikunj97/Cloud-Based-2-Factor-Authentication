@@ -11,6 +11,7 @@ VALIDATE_USER_URL = config.readConfig(URL_SECTION_NAME, 'validate_user')
 VALIDATE_OTP_URL = config.readConfig(URL_SECTION_NAME, 'validate_otp')
 SEND_OTP_URL = config.readConfig(URL_SECTION_NAME, 'send_otp')
 
+TOKEN = config.readConfig("token")
 HOME_PATH = os.path.expanduser('~')
 
 def getLocalSeed(userId):
@@ -30,7 +31,7 @@ def isUserValid(userId, password, otp=""):
         "password": password
     })
     url = VALIDATE_USER_URL
-    res = requests.post(url, data=userData)
+    res = requests.post(url, data=userData, headers={"cloud9_token": TOKEN})
     if (res.status_code == 200):
         resData = json.loads(res.text)["response"]
         print(resData)
@@ -61,7 +62,7 @@ def isUserValid(userId, password, otp=""):
                     "emailid": userId,
                     "user_otp": otp
                 })
-                res = requests.post(url, data=userData)
+                res = requests.post(url, data=userData, headers={"cloud9_token": TOKEN})
                 print(json.loads(res.text))
                 if(res.status_code == 200):
                     is_accessible = os.access(HOME_PATH, os.F_OK)  # Check if you have access, this should be a path
@@ -91,7 +92,7 @@ def isUserValid(userId, password, otp=""):
                     return responseToReturn
             else:
                 url = SEND_OTP_URL
-                requests.post(url, data=userData)
+                requests.post(url, data=userData, headers={"cloud9_token": TOKEN})
                 responseToReturn = {
                     "isCorrect" : False,
                     "message" : "OTP"

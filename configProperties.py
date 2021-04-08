@@ -1,5 +1,5 @@
 BASE_URL = "https://jpl6e643r3.execute-api.us-east-1.amazonaws.com/cloud9/loan-application"
-loanApplicationUrls = {
+LOAN_APPLICATION_URLS = {
     "login":{
         "send_otp":"/login/send-otp",
         "validate_otp": "/login/validate-otp",
@@ -13,7 +13,13 @@ loanApplicationUrls = {
         "uploads": "/loan/uploads"
     }
 }
-def get(section , key):
-    url_to_return = BASE_URL + loanApplicationUrls[section][key]
-    print(url_to_return)
-    return url_to_return
+TOKEN = "U29tZVNlY3VyZVRva2VuIzEyMzQ="
+
+
+def get(section, key=False):
+    if(key):
+        url_to_return = BASE_URL + LOAN_APPLICATION_URLS[section][key]
+        print(url_to_return)
+        return url_to_return
+    else:
+        return TOKEN

@@ -10,9 +10,11 @@ URL_SECTION_NAME = "registration"
 
 registrationUrl = config.readConfig(URL_SECTION_NAME, 'register_User')
 
+TOKEN = config.readConfig("token")
+
 def registerUser(userData):
 
-    response = requests.post(registrationUrl, data = json.dumps(userData))
+    response = requests.post(registrationUrl, data = json.dumps(userData), headers={"cloud9_token": TOKEN})
 
     if response.status_code == 200:
         store_seed(userData,json.loads(response.text)["salt"])
