@@ -7,6 +7,9 @@
         </div>
         <div class="row">
             <div class="col-md-12 mb-5">
+                <h4 class=" text-info" data-aos="fade-up" data-aos-delay="100">{{ applyMessage }}</h4>
+                {% if not applyMessage %}
+
                 <form action="/submitLoanApplication" method="post" class="p-5 bg-white" enctype = "multipart/form-data">
                     <h2 class="h4 text-black mb-5">How much do you need</h2>
                     <div class="row form-group">
@@ -52,8 +55,8 @@
                             <input type="text" id="name" name="name" class="form-control">
                         </div>
                         <div class="col-md-6">
-                            <label class="text-black" for="phone">Phone:</label>
-                            <input type="text" id="phone" name="phoneNumber" class="form-control">
+                            <label class="text-black" for="income">Annual Income:</label>
+                            <input type="text" id="income" name="income" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
@@ -62,6 +65,8 @@
                         </div>
                     </div>
                 </form>
+
+                {% endif %}
             </div>
         </div>
     </div>

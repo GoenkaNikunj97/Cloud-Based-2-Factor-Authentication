@@ -10,6 +10,7 @@ import loanLogic
 app = Flask(__name__)
 app.config.from_object('config.DevelopmentConfig')
 app.secret_key = os.urandom(16)
+app.config['uploadFolder'] = 'static/upload'
 
 @app.route('/')
 def showLoginPage():
@@ -80,19 +81,27 @@ def logout():
 @app.route("/submitLoanApplication",methods=["POST"])
 def submitLoanApplication():
     requestBody = {
+        "emailid": session["username"],
         "amount": (request.form['amount']),
         "time": request.form['time'],
         "repayment": request.form['repayment'],
         "annual": request.form['annual'],
         "name": request.form['name'],
         "dob": request.form['dob'],
-        "phoneNumber": request.form['phoneNumber'],
-        "loanFile": request.files['loanFile']
+        "income": request.form['income'],
+        "loanFile": request.files['loanFile'],
+        "config": app.config['uploadFolder']
     }
-
-    #loanLogic.appLoan()
-
-    return redirect(url_for('success', name="Nikunj"))
+    print(requestBody)
+    res = loanLogic.appLoan(requestBody)
+    if (res):
+        return render_template("single.html",
+                               statusFlag=True,
+                               application_Status="Application Submitted",
+                               applyMessage = "Application has been submitted"
+                               )
+    else:
+        return render_template("single.html", statusFlag=True, application_Status="Some error has occured")
 
 @app.route("/track",methods=["POST"])
 def trackLoan():
