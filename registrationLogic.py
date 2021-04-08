@@ -6,12 +6,13 @@ import json
 import cryptoLogic
 
 HOME_PATH = os.path.expanduser('~')
+URL_SECTION_NAME = "registration"
+
+registrationUrl = config.readConfig(URL_SECTION_NAME, 'register_User')
+
 def registerUser(userData):
-    registrationUrl = config.readConfig('AwsServiceUrl', 'aws.registration')
 
     response = requests.post(registrationUrl, data = json.dumps(userData))
-
-    print(json.loads(response.text)["salt"])
 
     if response.status_code == 200:
         store_seed(userData,json.loads(response.text)["salt"])

@@ -5,10 +5,11 @@ import requests
 import json
 from werkzeug.utils import secure_filename
 
-LOAN_URL = config.readConfig('AwsServiceUrl', 'applyLoan')
+URL_SECTION_NAME = "loan"
+LOAN_URL = config.readConfig(URL_SECTION_NAME, 'loan_update')
+LOAN_FILE_UPLOAD_URL = config.readConfig(URL_SECTION_NAME, 'uploads')
 
 def appLoan(userData):
-    uploadURL = config.readConfig('AwsServiceUrl', 'uploadFile')
     dataToSend = json.loads(json.dumps({
         "emailid": userData["emailid"],
         "send_mail": "true",
@@ -23,8 +24,8 @@ def appLoan(userData):
 
     file = userData["loanFile"]
     file_data = file.read()
-    print(type(file_data))
-    file_response = requests.post(uploadURL, file_data,
+
+    file_response = requests.post(LOAN_FILE_UPLOAD_URL, file_data,
                                   headers={"Content-Type": "application/pdf", "emailid": userData["emailid"]})
 
     print(file_response.text)

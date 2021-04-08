@@ -5,11 +5,11 @@ import json
 import cryptoLogic
 import config
 
-BASE_URL = config.readConfig('AwsServiceUrl', 'baseURL')
+URL_SECTION_NAME = "login"
 
-VALIDATE_USER_URL = config.readConfig('AwsServiceUrl', 'validateUser')
-VALIDATE_OTP_URL = config.readConfig('AwsServiceUrl', 'validateOtp')
-SEND_OTP_URL = config.readConfig('AwsServiceUrl', 'sendOtp')
+VALIDATE_USER_URL = config.readConfig(URL_SECTION_NAME, 'validate_user')
+VALIDATE_OTP_URL = config.readConfig(URL_SECTION_NAME, 'validate_otp')
+SEND_OTP_URL = config.readConfig(URL_SECTION_NAME, 'send_otp')
 
 HOME_PATH = os.path.expanduser('~')
 
@@ -29,7 +29,7 @@ def isUserValid(userId, password, otp=""):
         "emailid": userId,
         "password": password
     })
-    url = BASE_URL + VALIDATE_USER_URL
+    url = VALIDATE_USER_URL
     res = requests.post(url, data=userData)
     if (res.status_code == 200):
         resData = json.loads(res.text)["response"]
@@ -56,7 +56,7 @@ def isUserValid(userId, password, otp=""):
             print("Seed Not Found")
             if(otp):
                 print("Inside OTP:"+ str(otp))
-                url = BASE_URL + VALIDATE_OTP_URL
+                url = VALIDATE_OTP_URL
                 userData = json.dumps({
                     "emailid": userId,
                     "user_otp": otp
@@ -90,7 +90,7 @@ def isUserValid(userId, password, otp=""):
                     }
                     return responseToReturn
             else:
-                url = BASE_URL + SEND_OTP_URL
+                url = SEND_OTP_URL
                 requests.post(url, data=userData)
                 responseToReturn = {
                     "isCorrect" : False,
