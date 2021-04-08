@@ -5,6 +5,7 @@ import json
 
 import loginLogic
 import registrationLogic
+import loanLogic
 
 app = Flask(__name__)
 app.config.from_object('config.DevelopmentConfig')
@@ -78,7 +79,29 @@ def logout():
 
 @app.route("/submitLoanApplication",methods=["POST"])
 def submitLoanApplication():
+    requestBody = {
+        "amount": (request.form['amount']),
+        "time": request.form['time'],
+        "repayment": request.form['repayment'],
+        "annual": request.form['annual'],
+        "name": request.form['name'],
+        "dob": request.form['dob'],
+        "phoneNumber": request.form['phoneNumber'],
+        "loanFile": request.files['loanFile']
+    }
+
+    #loanLogic.appLoan()
+
     return redirect(url_for('success', name="Nikunj"))
+
+@app.route("/track",methods=["POST"])
+def trackLoan():
+    email = request.form['email']
+    res = loanLogic.trackLoan(email)
+    if(res):
+        return render_template("single.html", statusFlag = True, application_Status = res )
+    else:
+        return render_template("single.html", statusFlag= True, application_Status= "Some error has occured" )
 
 if __name__ == '__main__':
     app.run(debug=True)

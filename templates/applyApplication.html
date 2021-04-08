@@ -7,22 +7,22 @@
         </div>
         <div class="row">
             <div class="col-md-12 mb-5">
-                <form action="/submitLoanApplication" method="post" class="p-5 bg-white">
+                <form action="/submitLoanApplication" method="post" class="p-5 bg-white" enctype = "multipart/form-data">
                     <h2 class="h4 text-black mb-5">How much do you need</h2>
                     <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
                             <label class="text-black" for="amount">Amount of money ($):</label>
-                            <input type="text" id="amount" class="form-control">
+                            <input type="text" id="amount" class="form-control" name="amount">
                         </div>
                         <div class="col-md-6">
                             <label class="text-black" for="time">Loan Tenure (days) </label>
-                            <input type="text" id="time" class="form-control">
+                            <input type="text" id="time" class="form-control" name="time">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="repayment">Repayment:</label>
-                            <select id="repayment" class="form-control">
+                            <select id="repayment" class="form-control" name="repayment">
                                 <option value="Choose Payment Option">Choose Payment Option</option>
                                 <option value="Monthly">Monthly</option>
                                 <option value="Quaterly">Quaterly</option>
@@ -35,16 +35,16 @@
                     <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
                             <label class="text-black" for="Annual">Annual income ($):</label>
-                            <input type="text" id="Annual" class="form-control">
+                            <input type="text" id="Annual" class="form-control" name="annual">
                         </div>
                         <div class="col-md-6">
                             <label class="text-black" for="dob">DOB:</label>
-                            <input type="date" id="dob" class="form-control">
+                            <input type="date" id="dob" class="form-control" name="dob">
                         </div>
                     </div>
                     <div class="row form-group">
                         <label class="text-black" for="loanFile">Upload Identity Proof</label>
-                        <input type="File" id="loanFile" name="loanFile" class="form-control">
+                        <input type="file" id="loanFile" name="loanFile" class="form-control">
                     </div>
                     <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <input style= "background: #44A08D;border-color: #44A08D;" type="submit" style="backh" value="Send Application" class="btn btn-primary btn-md text-white">
+                            <input style= "background: #44A08D;border-color: #44A08D;" type="submit" value="Send Application" class="btn btn-primary btn-md text-white">
                         </div>
                     </div>
                 </form>

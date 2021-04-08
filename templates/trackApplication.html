@@ -2,65 +2,81 @@
     <div class="container">
         <div class="row mb-5 justify-content-center">
             <div class="col-md-10 text-center">
-                <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="" style="color:#44A08D;">Track Application</h2>
+                <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="" style="color:#44A08D;">Track
+                    Application</h2>
                 <div class="border-top border-bottom pt-7">
-                    <h4 class=" text-info" data-aos="fade-up" data-aos-delay="100">
-                        <form action="/track" method="post" id="trackForm">
-
-                          <div class="form-group">
-                            <label for="applicationId">Enter Loan Application ID</label>
-                            <input type="text" class="form-control" id="applicationId" name= "applicationId" >
-                          </div>
-                        </form>
-                    </h4>
+                    <h4 class=" text-info" data-aos="fade-up" data-aos-delay="100">{{ application_Status }}</h4>
+                    {% if not statusFlag %}
+                    <form action="/track" method="post" id="trackForm">
+                        <div class="form-group">
+                            <label for="email">Enter your Email Id</label>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input style="background: #44A08D;border-color: #44A08D;" type="submit"
+                                       value="Track" class="btn btn-primary btn-md text-white">
+                            </div>
+                        </div>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <div class= "border">
-            <div class="'row"><div class="col text-center">
-                <h6 class="section-title mb-3" data-aos="fade-up" data-aos-delay="" style="color:#44A08D;">About Loan Process</h6>
-            </div></div>
-        <div class="row align-items-lg-center">
-            <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-                <div class="owl-carousel slide-one-item-alt">
-                    <img src="{{url_for('static', filename='images/slide_1.jpg')}}" alt="Image" class="img-fluid">
-                    <img src="{{url_for('static', filename='images/slide_2.jpg')}}" alt="Image" class="img-fluid">
-                    <img src="{{url_for('static', filename='images/slide_3.jpg')}}" alt="Image" class="img-fluid">
-                </div>
-                <div style="background:#17a2b8;"class="custom-direction">
-                    <a href="#" class="custom-prev">
-                        <span> < </span>
-                    </a>
-                    <a href="#" class="custom-next">
-                        <span> > </span>
-                    </a>
+        <div class="border">
+            <div class="'row">
+                <div class="col text-center">
+                    <h6 class="section-title mb-3" data-aos="fade-up" data-aos-delay="" style="color:#44A08D;">About
+                        Loan Process</h6>
                 </div>
             </div>
-            <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-                <div class="owl-carousel slide-one-item-alt-text">
-                    <div>
-                        <h2 class="section-title mb-3" style="color:#44A08D;">01. Apply For Loan</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                            It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-
-                        <p style="color:#44A08D;"><a href="#" class="btn btn-info mr-2 mb-2" >Learn More</a></p>
+            <div class="row align-items-lg-center">
+                <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
+                    <div class="owl-carousel slide-one-item-alt">
+                        <img src="{{url_for('static', filename='images/slide_1.jpg')}}" alt="Image" class="img-fluid">
+                        <img src="{{url_for('static', filename='images/slide_2.jpg')}}" alt="Image" class="img-fluid">
+                        <img src="{{url_for('static', filename='images/slide_3.jpg')}}" alt="Image" class="img-fluid">
                     </div>
-                    <div>
-                        <h2 class="section-title mb-3" style="color:#44A08D;">02. Application In Process</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                            It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p style="color:#44A08D;"><a href="#" class="btn btn-info mr-2 mb-2">Learn More</a></p>
+                    <div style="background:#17a2b8;" class="custom-direction">
+                        <a href="#" class="custom-prev">
+                            <span> < </span>
+                        </a>
+                        <a href="#" class="custom-next">
+                            <span> > </span>
+                        </a>
                     </div>
-                    <div>
-                        <h2 class="section-title mb-3" style="color:#44A08D;">03. Final Decision</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                            It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                </div>
+                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
+                    <div class="owl-carousel slide-one-item-alt-text">
+                        <div>
+                            <h2 class="section-title mb-3" style="color:#44A08D;">01. Apply For Loan</h2>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary
+                                regelialia.
+                                It is a paradisematic country, in which roasted parts of sentences fly into your
+                                mouth.</p>
 
-                        <p style="color:#44A08D;"><a href="#" class="btn btn-info mr-2 mb-2">Learn More</a></p>
+                            <p style="color:#44A08D;"><a href="#" class="btn btn-info mr-2 mb-2">Learn More</a></p>
+                        </div>
+                        <div>
+                            <h2 class="section-title mb-3" style="color:#44A08D;">02. Application In Process</h2>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary
+                                regelialia.
+                                It is a paradisematic country, in which roasted parts of sentences fly into your
+                                mouth.</p>
+                            <p style="color:#44A08D;"><a href="#" class="btn btn-info mr-2 mb-2">Learn More</a></p>
+                        </div>
+                        <div>
+                            <h2 class="section-title mb-3" style="color:#44A08D;">03. Final Decision</h2>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary
+                                regelialia.
+                                It is a paradisematic country, in which roasted parts of sentences fly into your
+                                mouth.</p>
+
+                            <p style="color:#44A08D;"><a href="#" class="btn btn-info mr-2 mb-2">Learn More</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-            </div>
     </div>
 </section>

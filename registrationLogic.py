@@ -9,7 +9,6 @@ HOME_PATH = os.path.expanduser('~')
 def registerUser(userData):
     registrationUrl = config.readConfig('AwsServiceUrl', 'aws.registration')
 
-    print(json.dumps(userData))
     response = requests.post(registrationUrl, data = json.dumps(userData))
 
     print(json.loads(response.text)["salt"])
