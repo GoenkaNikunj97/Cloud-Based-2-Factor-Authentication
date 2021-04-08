@@ -22,23 +22,21 @@ def appLoan(userData):
         "annual_income": userData["income"]
     }))
 
-    file = userData["loanFile"]
+    #file = userData["loanFile"]
     #file = secure_filename(file.filename)
-    sample_string = file.read()
-    sample_string_bytes = sample_string.encode("ascii")
+    #sample_string = file.read()
+    #sample_string_bytes = sample_string.encode("ascii")
 
-    base64_bytes = base64.b64encode(sample_string_bytes)
+    #base64_bytes = base64.b64encode(sample_string_bytes)
     #sample_string_bytes = sample_string.encode(file.read())
     #file = userData["emailid"].filename
-    file_response = requests.post(uploadURL, base64_bytes ,headers={ "Content-Type":"application/pdf","emailid" : userData["emailid"]})
-    #response = requests.post(LOAN_URL, data=json.dumps(dataToSend))
-    print(file_response.text)
-    '''
+    #file_response = requests.post(uploadURL, base64_bytes ,headers={ "Content-Type":"application/pdf","emailid" : userData["emailid"]})
+    response = requests.post(LOAN_URL, data=json.dumps(dataToSend))
+    #print(file_response.text)
     if (response.status_code == 200):
         return True
     else:
         return False
-        '''
 
 
 def trackLoan(emailid):
@@ -49,6 +47,7 @@ def trackLoan(emailid):
     }))
 
     response = requests.post(LOAN_URL, data=json.dumps(userData))
+    print (response.text)
     if (response.status_code == 200):
         response = json.loads(response.text)
         print( response )
