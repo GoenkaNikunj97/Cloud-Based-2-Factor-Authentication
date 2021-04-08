@@ -4,7 +4,6 @@ from os import path
 import requests
 import json
 from werkzeug.utils import secure_filename
-import base64
 
 LOAN_URL = config.readConfig('AwsServiceUrl', 'applyLoan')
 
@@ -23,18 +22,11 @@ def appLoan(userData):
     }))
 
     file = userData["loanFile"]
-    #file = secure_filename(file.filename)
     file_data = file.read()
     print(type(file_data))
-    encodedBytes = base64.b64encode(file_data)
     file_response = requests.post(uploadURL, file_data,
                                   headers={"Content-Type": "application/pdf", "emailid": userData["emailid"]})
-    #sample_string_bytes = sample_string.encode("ascii")
 
-    #base64_bytes = base64.b64encode(sample_string_bytes)
-    #sample_string_bytes = sample_string.encode(file.read())
-    #file = userData["emailid"].filename
-    #
     print(file_response.text)
     response = requests.post(LOAN_URL, data=json.dumps(dataToSend))
     if (response.status_code == 200):
