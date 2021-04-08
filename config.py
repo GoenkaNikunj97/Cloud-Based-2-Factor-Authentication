@@ -7,10 +7,6 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = 'SecretKey'
 
-class ProductionConfig(Config):
-    DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-
 class DevelopmentConfig(Config):
     ENV="development"
     DEVELOPMENT=True
@@ -18,9 +14,6 @@ class DevelopmentConfig(Config):
 
 def readConfig(section,key):
 
-    #configParser = configparser.RawConfigParser()
-    #configParser.read('configFile.properties')
     return c.get(key)
-    #return configParser.get(section, key)
 
 SQLALCHEMY_DATABASE_URI="DB_URL"

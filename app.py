@@ -36,7 +36,7 @@ def login():
           session['username'] = request.form["userName"]
           return redirect(url_for('success', name=userId))
       elif(validationResponse['message'] == "OTP"):
-          flash("OTP Sent to Email", "error")
+          flash("OTP for 2 factor authentication has been sent to Email", "error")
           return render_template("index.html", OTP="True", userId=userId, password=password)
       else:
           flash(validationResponse['message'], "error")
@@ -91,7 +91,7 @@ def submitLoanApplication():
         "loanFile": request.files['loanFile'],
         "config": app.config['uploadFolder']
     }
-    #print(requestBody)
+
     res = loanLogic.appLoan(requestBody)
     if (res):
         return render_template("single.html",

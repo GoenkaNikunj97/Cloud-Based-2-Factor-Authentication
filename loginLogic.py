@@ -9,7 +9,6 @@ BASE_URL = config.readConfig('AwsServiceUrl', 'baseURL')
 
 VALIDATE_USER_URL = config.readConfig('AwsServiceUrl', 'validateUser')
 VALIDATE_OTP_URL = config.readConfig('AwsServiceUrl', 'validateOtp')
-
 SEND_OTP_URL = config.readConfig('AwsServiceUrl', 'sendOtp')
 
 HOME_PATH = os.path.expanduser('~')
@@ -32,11 +31,10 @@ def isUserValid(userId, password, otp=""):
     })
     url = BASE_URL + VALIDATE_USER_URL
     res = requests.post(url, data=userData)
-
-    resData = json.loads(res.text)["response"]
-    print(resData)
-    print(res)
     if (res.status_code == 200):
+        resData = json.loads(res.text)["response"]
+        print(resData)
+        print(res)
         isSeedPresent = getLocalSeed(userId)
         if(isSeedPresent):
             print("Local Seed Found")

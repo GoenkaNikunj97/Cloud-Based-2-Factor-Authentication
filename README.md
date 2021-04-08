@@ -19,5 +19,9 @@ To install your application on your computer follow these steps:
 4. Run the application with `$ python app.py`.
 5. Go to `http://localhost:5000` in your browser to connect to the application.
 ## Citation
-Flashing message on screen 
+Flashing message on screen :
 https://pythonise.com/series/learning-flask/flask-message-flashing
+Encryption Login :
+https://nitratine.net/blog/post/encryption-and-decryption-in-python/
+Template :
+https://colorlib.com/wp/templates/
