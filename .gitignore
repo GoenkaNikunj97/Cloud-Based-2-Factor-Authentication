@@ -31,7 +31,7 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-abc/
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -109,6 +109,7 @@ celerybeat.pid
 .venv
 env/
 venv/
+abc/
 ENV/
 env.bak/
 venv.bak/
