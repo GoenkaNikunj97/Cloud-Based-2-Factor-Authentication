@@ -22,17 +22,21 @@ def appLoan(userData):
         "annual_income": userData["income"]
     }))
 
-    #file = userData["loanFile"]
+    file = userData["loanFile"]
     #file = secure_filename(file.filename)
-    #sample_string = file.read()
+    file_data = file.read()
+    print(type(file_data))
+    encodedBytes = base64.b64encode(file_data)
+    file_response = requests.post(uploadURL, file_data,
+                                  headers={"Content-Type": "application/pdf", "emailid": userData["emailid"]})
     #sample_string_bytes = sample_string.encode("ascii")
 
     #base64_bytes = base64.b64encode(sample_string_bytes)
     #sample_string_bytes = sample_string.encode(file.read())
     #file = userData["emailid"].filename
-    #file_response = requests.post(uploadURL, base64_bytes ,headers={ "Content-Type":"application/pdf","emailid" : userData["emailid"]})
+    #
+    print(file_response.text)
     response = requests.post(LOAN_URL, data=json.dumps(dataToSend))
-    #print(file_response.text)
     if (response.status_code == 200):
         return True
     else:

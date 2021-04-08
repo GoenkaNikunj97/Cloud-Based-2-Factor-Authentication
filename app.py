@@ -85,14 +85,13 @@ def submitLoanApplication():
         "amount": (request.form['amount']),
         "time": request.form['time'],
         "repayment": request.form['repayment'],
-        "annual": request.form['annual'],
         "name": request.form['name'],
         "dob": request.form['dob'],
-        "income": request.form['income'],
+        "income": request.form['annual'],
         "loanFile": request.files['loanFile'],
         "config": app.config['uploadFolder']
     }
-    print(requestBody)
+    #print(requestBody)
     res = loanLogic.appLoan(requestBody)
     if (res):
         return render_template("single.html",
