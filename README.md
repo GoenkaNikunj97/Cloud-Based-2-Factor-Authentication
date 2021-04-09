@@ -1,7 +1,6 @@
 # Loan Application using Flask
 
 * Date Created: 8-03-2021
-* Website URL: ---
 
 
 ## Authors
