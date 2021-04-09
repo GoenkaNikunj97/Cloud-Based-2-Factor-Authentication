@@ -65,7 +65,7 @@ def dynamodb_handler(event, context):
                 "content-type": "application/json"
               }
         }
-
+#citation: https://geeksforgeeks.com
 def generate_otp():
     otp = ""
     otp_digits = "0123456789"
