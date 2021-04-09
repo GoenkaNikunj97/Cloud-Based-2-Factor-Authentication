@@ -109,7 +109,7 @@ def update_item(user_mail, attribute_name, attribute_value, table):
             ':val1': attribute_value
         }
     )
-    
+#citation: https://geeksforgeeks.com    
 def generate_random_number():
     random_number = ""
     random_number_digits = "0123456789"
