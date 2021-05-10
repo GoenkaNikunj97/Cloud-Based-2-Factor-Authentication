@@ -6,7 +6,13 @@
 * [General info](#about)
 * [Setup](#installation)
 
-##About
+## About the Project
+The application is developed to understand various AWS services.
+The application contains a two-factor authentication application build on top of a simple loan application.
+
+A new user will be asked to verify themself using the email service. When the user is verified an encrypted file will be downloaded to the user's local machine containing a unique seed value. This seed will be used to verify the user in the future.
+
+If an old user login using a new machine or if the encrypted seed file is corrupt or tampered with, the user has to again verify the identity using the email functionality.
 
 ### Authors
 * [Nikunj Goenka](https://git.cs.dal.ca/goenka)
