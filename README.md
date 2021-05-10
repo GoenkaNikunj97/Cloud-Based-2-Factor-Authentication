@@ -1,7 +1,5 @@
 # Loan Application using Flask
-
-* Date Created: 8-03-2021
-* 
+Date Created: 8-03-2021
 ## Table of contents
 * [General info](#about)
 * [Setup](#installation)
