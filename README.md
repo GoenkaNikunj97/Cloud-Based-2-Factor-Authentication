@@ -1,9 +1,14 @@
 # Loan Application using Flask
 
 * Date Created: 8-03-2021
+* 
+## Table of contents
+* [General info](#about)
+* [Setup](#installation)
 
+##About
 
-## Authors
+### Authors
 * [Nikunj Goenka](https://git.cs.dal.ca/goenka)
 * [Rashmi Chandy](https://git.cs.dal.ca/chandy)
 * [Kethan Kumar Nasapu](https://git.cs.dal.ca/nasapu)
